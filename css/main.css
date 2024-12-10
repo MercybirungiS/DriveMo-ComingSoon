@@ -1457,16 +1457,17 @@ input::-moz-focus-inner {
 /* -------------------------------------------------------------------
  * ## header logo
  * ------------------------------------------------------------------- */
+/* Base styles for header logo */
 .header-logo {
   z-index: 101;
   display: inline-block;
   margin: 0;
   padding: 0;
-  transition: all .3s;
-  -webkit-transform: translate3d(0, -50%, 0);
-  transform: translate3d(0, -50%, 0);
+  transition: all 0.3s ease;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
   position: absolute;
-  right: 8rem;
+  right: 8rem; /* Large screens default spacing */
   top: 50%;
 }
 
@@ -1478,9 +1479,36 @@ input::-moz-focus-inner {
 }
 
 .header-logo img {
-  width: 400px;
-  height: 300px;
+  width: 100%; /* Make responsive */
+  max-width: 400px; /* Restrict size */
+  height: auto; /* Maintain aspect ratio */
 }
+
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+  .header-logo {
+    right: 2rem; /* Bring logo closer for smaller screens */
+    top: 10%; /* Adjust positioning */
+  }
+
+  .header-logo img {
+    max-width: 300px; /* Reduce size for tablets */
+  }
+}
+
+/* Phones and very small screens */
+@media (max-width: 480px) {
+  .header-logo {
+    right: 1rem; /* Further adjust spacing */
+    top: 5%; /* Make sure it's visible */
+    transform: translateY(0); /* Remove vertical centering for better control */
+  }
+
+  .header-logo img {
+    max-width: 200px; /* Further reduce size */
+  }
+}
+
 
 
 /* -------------------------------------------------------------------
@@ -1536,59 +1564,99 @@ input::-moz-focus-inner {
  * responsive:
  * header
  * ------------------------------------------------------------------- */
-@media screen and (max-width:1100px) {
+/* Base responsive header styles */
+/* Base responsive header styles */
+.header-logo img {
+  width: 100%; /* Make width fully responsive */
+  max-width: 400px; /* Limit maximum size */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive adjustments for various screen sizes */
+
+/* For screens smaller than 1100px */
+@media screen and (max-width: 1100px) {
   .header-logo {
-    right: 4rem;
+    right: 4rem; /* Adjust positioning of the logo */
   }
 
   .header-email {
-    left: 4rem;
+    left: 4rem; /* Adjust positioning of the email */
   }
-
 }
 
-@media screen and (max-width:800px) {
+/* For screens smaller than 800px */
+@media screen and (max-width: 800px) {
   .s-header {
     top: 1.6rem;
   }
 
   .header-logo img {
-    width: 125px;
-    height: 20px;
+    max-width: 150px; /* Scale down the logo */
+    height: auto; /* Maintain aspect ratio */
   }
 
+  .header-logo {
+    right: 3rem; /* Adjust positioning */
+  }
+
+  .header-email {
+    left: 3rem; /* Adjust positioning of email */
+  }
 }
 
-@media screen and (max-width:600px) {
+/* For screens smaller than 600px */
+@media screen and (max-width: 600px) {
+  .header-logo {
+    right: 2rem; /* Adjust positioning */
+  }
+
   .header-logo img {
-    width: 120px;
-    height: 19px;
-  }
-
-}
-
-@media screen and (max-width:500px) {
-  .header-logo {
-    right: 3.2rem;
+    max-width: 120px; /* Further scale down the logo */
+    height: auto; /* Maintain aspect ratio */
   }
 
   .header-email {
-    left: 3.2rem;
+    left: 2rem; /* Further adjust position of email */
   }
-
 }
 
-@media screen and (max-width:400px) {
+/* For screens smaller than 500px */
+@media screen and (max-width: 500px) {
   .header-logo {
-    right: auto;
+    right: auto; /* Center-align */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust alignment */
+  }
+
+  .header-email {
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%) translateY(-50%); /* Adjust for perfect centering */
+  }
+
+  .header-logo img {
+    max-width: 500px; /* Further reduce size */
+    height: auto;
+  }
+}
+
+/* For screens smaller than 400px */
+@media screen and (max-width: 400px) {
+  .header-logo {
     left: 4.2rem;
+    transform: none; /* Remove centering transformation for this size */
   }
 
   .header-email {
-    display: none;
+    display: none; /* Hide email for very small screens */
   }
 
+  .header-logo img {
+    max-width: 80px; /* Minimal size */
+    height: auto;
+  }
 }
+
 
 
 
